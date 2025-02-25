@@ -22,7 +22,7 @@ A todo app built as a portfolio project to showcase my skills in frontend develo
   - Dark/Light mode toggle.
  
 ## Technologies Used
-- **Frontend:** React, Styled Components
+- **Frontend:** React, SASS, Styled Components
 - **Backend:** Firebase (Authentication, Firestore)
 - **Deployment:** Netlify
 
