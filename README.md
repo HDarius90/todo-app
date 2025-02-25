@@ -22,7 +22,7 @@ A todo app built as a portfolio project to showcase my skills in frontend develo
   - Dark/Light mode toggle.
  
 ## Technologies Used
-- **Frontend:** React,
+- **Frontend:** React, Styled Components
 - **Backend:** Firebase (Authentication, Firestore)
 - **Deployment:** Netlify
 
@@ -37,7 +37,7 @@ A todo app built as a portfolio project to showcase my skills in frontend develo
     npm install
    
 3. Set up Firebase:
-Create a Firebase project and add your configuration in src/firebase.js.
+Create a Firebase project and add your configuration in src/utils/firebase/firebase.utils.ts.
 
 4. Run the app:
    ```bash
