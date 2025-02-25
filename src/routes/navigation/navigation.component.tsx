@@ -1,11 +1,19 @@
 import { Outlet } from 'react-router-dom';
+import {
+  NavigationContainer,
+  NavLink,
+  NavLinks,
+} from './navigation.styles';
 
 const Navigation = () => {
-
   return (
     <>
-      <div className='navbar'>
-      </div>
+      <NavigationContainer>
+        <NavLinks>
+          <NavLink to="/">HOME</NavLink>
+          <NavLink to="/auth">SIGN IN</NavLink>
+        </NavLinks>
+      </NavigationContainer>
       <Outlet />
     </>
   );

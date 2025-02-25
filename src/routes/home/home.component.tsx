@@ -1,7 +1,11 @@
+import { Outlet } from 'react-router-dom';
+import Notebook from '../../components/notebook/notebook.component';
+
 const Home = () => {
   return (
     <div>
-      TODO-APP
+      <Notebook />
+      <Outlet />
     </div>
   );
 };
