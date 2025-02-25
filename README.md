@@ -43,6 +43,10 @@ Create a Firebase project and add your configuration in src/utils/firebase/fireb
    ```bash
     npm start
 
+## Screenshots
+![Home Page](/screenshots/home.png)
+![Task List](/screenshots/tasks.png)
+
 ## Contributing
 Contributions are welcome! Please submit a pull request for any improvements.
 
