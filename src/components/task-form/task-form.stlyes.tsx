@@ -8,6 +8,7 @@ export const TaskInput = styled.textarea`
     resize: none;
     overflow: hidden;
     scrollbar-width: none; /* for Firefox */
+    font-size: large;
 
     &:focus {
         border: 1px solid darkblue;
