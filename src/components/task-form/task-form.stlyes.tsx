@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const TaskInput = styled.textarea`
-    padding: 10px;
+    padding: 1rem;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 8px;
     border: 1px solid grey;
     resize: none;
     overflow: hidden;
