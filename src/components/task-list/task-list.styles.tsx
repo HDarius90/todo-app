@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import { FaTrash } from 'react-icons/fa';
 
-export const TaskListContainer = styled.ul`
+
+export const List = styled.ul`
   max-height: 18rem;
   overflow-y: auto;
   scrollbar-width: thin;
@@ -14,6 +16,7 @@ export const TaskListContainer = styled.ul`
 export const TaskItem = styled.li<{ completed: boolean }>`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 1.2rem;
   background-color: #F2F2F2;
   border-radius: 8px;
@@ -21,3 +24,11 @@ export const TaskItem = styled.li<{ completed: boolean }>`
   text-decoration: ${({ completed }) => (completed ? "line-through" : "none")};
   color: black;
 `;
+
+export const TrashIcon = styled(FaTrash)`
+color: grey;
+
+&:hover {
+  color: #000000a2;
+}
+`

@@ -1,16 +1,18 @@
 import { FC, ButtonHTMLAttributes } from 'react';
 
-import { BaseButton, ClearButton } from './button.styles';
+import { BaseButton, ClearButton, DeleteButton } from './button.styles';
 
 export enum BUTTON_TYPE_CLASSES {
   base = 'base',
   clear = 'clear-button',
+  delete = 'delete',
 }
 
 const getButton = (buttonType = BUTTON_TYPE_CLASSES.base) =>
   ({
     [BUTTON_TYPE_CLASSES.base]: BaseButton,
     [BUTTON_TYPE_CLASSES.clear]: ClearButton,
+    [BUTTON_TYPE_CLASSES.delete]: DeleteButton,
   }[buttonType]);
 
 export type ButtonProps = {
