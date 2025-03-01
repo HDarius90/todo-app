@@ -17,13 +17,28 @@ export const TaskItem = styled.li<{ completed: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.2rem;
+  padding: 1.5rem 0.7rem;
   background-color: #F2F2F2;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-decoration: ${({ completed }) => (completed ? "line-through" : "none")};
   color: black;
+
+  &:hover button {
+    opacity: 1;
+  }
 `;
+
+export const Checkbox = styled.input`
+  margin-right: 10px;
+  cursor: pointer;
+`;
+
+export const TaskContent = styled.span`
+  text-align: left;
+  flex-grow: 2;
+  
+`
 
 export const TrashIcon = styled(FaTrash)`
 color: grey;

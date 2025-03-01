@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
 export const BaseButton = styled.button`
-  width: 80px;
-  height: 33px;
-  margin-top: 10px;
   color: white;
   border: none;
   border-radius: 4px;
@@ -11,12 +8,14 @@ export const BaseButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-
 `;
 
 export const ClearButton = styled(BaseButton)`
+  width: 80px;
+  height: 33px;
   background-color: #4285f4;
   color: white;
+  margin-top: 10px;
 
   &:hover {
     background-color: #357ae8;
@@ -26,5 +25,7 @@ export const ClearButton = styled(BaseButton)`
 `;
 
 export const DeleteButton = styled(BaseButton)`
-    padding: 5px 10px;
+    padding: 1px 10px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
 `;

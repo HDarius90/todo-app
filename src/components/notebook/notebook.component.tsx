@@ -18,7 +18,7 @@ const Notebook = () => {
   const [tasks, setTasks] = useState<Task[]>([
     { id: 1, text: 'Take out the trash', completed: false },
     { id: 2, text: 'Go for a walk', completed: false },
-    { id: 3, text: 'Push commits to develope', completed: true },
+    { id: 3, text: 'VERRY LOOOOOOOOOOOOOOOONG TASK', completed: true },
     { id: 4, text: 'Push commits to develope', completed: true },
     { id: 5, text: 'Push commits to develope', completed: true },
     { id: 6, text: 'Push commits to develope', completed: true },

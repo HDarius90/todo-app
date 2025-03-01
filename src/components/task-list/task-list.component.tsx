@@ -1,6 +1,12 @@
 import { FC } from 'react';
 import { Task } from '../notebook/notebook.component';
-import { TaskItem, List, TrashIcon } from './task-list.styles';
+import {
+  TaskItem,
+  List,
+  TrashIcon,
+  Checkbox,
+  TaskContent,
+} from './task-list.styles';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 
 type TaskListProps = {
@@ -12,7 +18,8 @@ const TaskList: FC<TaskListProps> = ({ tasks }) => {
     <List>
       {tasks.map((task) => (
         <TaskItem key={task.id} completed={task.completed}>
-          <span>{task.text}</span>
+          <Checkbox type="checkbox" checked={task.completed} />
+          <TaskContent>{task.text}</TaskContent>
           <Button buttonType={BUTTON_TYPE_CLASSES.delete}>
             <TrashIcon />
           </Button>

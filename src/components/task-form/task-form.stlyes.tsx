@@ -4,7 +4,7 @@ export const TaskInput = styled.textarea`
     padding: 1rem;
     width: 100%;
     border-radius: 8px;
-    border: 1px solid grey;
+    border: 1px solid lightgray;
     resize: none;
     overflow: hidden;
     scrollbar-width: none; /* for Firefox */
