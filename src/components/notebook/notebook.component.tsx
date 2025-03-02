@@ -1,21 +1,16 @@
 import { useState } from 'react';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
-import TaskForm from '../task-form/task-form.componenet';
+import TodoForm from '../todo-form/todo-form.componenet';
 import {
   NotebookContainer,
   NotebookFooter,
-  TaskCounter,
+  TodoCounter,
 } from './notebook.styles';
-import TaskList from '../task-list/task-list.component';
-
-export interface Task {
-  id: number;
-  text: string;
-  completed: boolean;
-}
+import TodoList from '../todo-list/todo-list.component';
+import { Todo } from '../../store/todo/todo.types';
 
 const Notebook = () => {
-  const [tasks, setTasks] = useState<Task[]>([
+  const [todos, setTodos] = useState<Todo[]>([
     { id: 1, text: 'Take out the trash', completed: false },
     { id: 2, text: 'Go for a walk', completed: false },
     { id: 3, text: 'VERRY LOOOOOOOOOOOOOOOONG TASK', completed: true },
@@ -34,10 +29,10 @@ const Notebook = () => {
 
   return (
     <NotebookContainer>
-      <TaskForm />
-      <TaskList tasks={tasks} />
+      <TodoForm />
+      <TodoList todos={todos} />
       <NotebookFooter>
-        <TaskCounter>You have no pending task</TaskCounter>
+        <TodoCounter>You have no pending task</TodoCounter>
         <Button buttonType={BUTTON_TYPE_CLASSES.clear}>Clear All</Button>
       </NotebookFooter>
     </NotebookContainer>

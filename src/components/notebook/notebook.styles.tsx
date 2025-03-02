@@ -21,6 +21,6 @@ export const NotebookFooter = styled.div`
   align-items: center;
 `;
 
-export const TaskCounter = styled.span`
+export const TodoCounter = styled.span`
   color: #00000094;
 `;

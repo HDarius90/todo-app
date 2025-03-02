@@ -13,7 +13,7 @@ export const List = styled.ul`
   padding: 0 1rem 0 0;
 `;
 
-export const TaskItem = styled.li<{ completed: boolean }>`
+export const TodoItem = styled.li<{ completed: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -34,7 +34,7 @@ export const Checkbox = styled.input`
   cursor: pointer;
 `;
 
-export const TaskContent = styled.span`
+export const TodoContent = styled.span`
   text-align: left;
   flex-grow: 2;
   

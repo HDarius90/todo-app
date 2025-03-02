@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const TaskInput = styled.textarea`
+export const TodoInput = styled.textarea`
     padding: 1rem;
     width: 100%;
     border-radius: 8px;
