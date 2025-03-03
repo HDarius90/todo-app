@@ -7,20 +7,28 @@ import {
   TodoContent,
 } from './todo-list.styles';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
-import { Todo } from '../../store/todo/todo.types';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { removeTodo, toggleTodo } from '../../store/todo/todo.slice';
 
-type TaskListProps = {
-  todos: Todo[];
-};
+const TaskList = () => {
+  const dispatch = useDispatch();
+  const todos = useSelector((state: RootState) => state.todos);
 
-const TaskList: FC<TaskListProps> = ({ todos }) => {
   return (
     <List>
       {todos.map((todo) => (
-        <TodoItem key={todo.id} completed={todo.completed}>
+        <TodoItem
+          key={todo.id}
+          completed={todo.completed}
+          onClick={() => dispatch(toggleTodo(todo.id))}
+        >
           <Checkbox type="checkbox" checked={todo.completed} />
           <TodoContent>{todo.text}</TodoContent>
-          <Button buttonType={BUTTON_TYPE_CLASSES.delete}>
+          <Button
+            buttonType={BUTTON_TYPE_CLASSES.delete}
+            onClick={() => dispatch(removeTodo(todo.id))}
+          >
             <TrashIcon />
           </Button>
         </TodoItem>
