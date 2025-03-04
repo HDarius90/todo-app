@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TodoState } from './todo.types';
 import { v4 as uuidv4 } from 'uuid';
 
-const initialState: TodoState = {
+const TODO_INITIAL_STATE: TodoState = {
   todos: [],
 };
 
 const todoSlice = createSlice({
   name: 'todos',
-  initialState,
+  initialState: TODO_INITIAL_STATE,
   reducers: {
     addTodo: (state, action: PayloadAction<string>) => {
       state.todos.push({
