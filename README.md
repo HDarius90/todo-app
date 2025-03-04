@@ -1,7 +1,7 @@
 # todo-app
 A todo app built as a portfolio project to showcase my skills in frontend development and backend integration. The app features a responsive React UI and uses Firebase for user authentication, login, and data storage. Key functionalities include task management, due dates, and user-specific task lists. Perfect for demonstrating modern web development practices and full-stack capabilities.
 
-[Live Demo](comming soon...)
+[Live Demo](https://daris-todo-app.netlify.app/)
 
 ## Features
 - **Task Management:**
