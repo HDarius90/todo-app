@@ -37,7 +37,8 @@ export const Checkbox = styled.input`
 export const TodoContent = styled.span`
   text-align: left;
   flex-grow: 2;
-  
+  word-wrap: break-word;
+  max-width: 80%
 `
 
 export const TrashIcon = styled(FaTrash)`
