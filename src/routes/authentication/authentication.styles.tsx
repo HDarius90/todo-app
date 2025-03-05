@@ -7,4 +7,5 @@ export const AuthenticationContainer = styled.div`
   margin: 30px auto;
   background-color: white;
   padding: 2rem;
+  font-family: 'Open Sans', sans-serif;
 `;
