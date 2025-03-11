@@ -1,5 +1,7 @@
-export enum USER_ACTION_TYPES {
-  GOOGLE_SIGN_IN_START = 'user/GOOGLE_SIGN_IN_START',
-  SIGN_IN_SUCCESS = 'user/SIGN_IN_SUCCESS',
-  SIGN_IN_FAILED = 'user/SIGN_IN_FAILED',
-}
+import { UserData } from "../../utils/firebase/firebase.utils";
+
+export type UserState = {
+  readonly currentUser: UserData | null;
+  readonly isLoading: boolean;
+  readonly error: Error | null;
+};

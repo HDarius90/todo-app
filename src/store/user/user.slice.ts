@@ -1,11 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { UserData } from '../../utils/firebase/firebase.utils';
-
-export type UserState = {
-  readonly currentUser: UserData | null;
-  readonly isLoading: boolean;
-  readonly error: Error | null;
-};
+import { NavigateFunction } from 'react-router-dom';
+import { UserState } from './user.types';
 
 export const USER_INITIAL_STATE: UserState = {
   currentUser: null,
@@ -16,9 +12,27 @@ export const USER_INITIAL_STATE: UserState = {
 const userSlice = createSlice({
   name: 'user',
   initialState: USER_INITIAL_STATE,
-  reducers: {},
+  reducers: {
+    googleSignInStart: (state, action: PayloadAction<NavigateFunction>) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    signInSuccess: (
+      state,
+      action: PayloadAction<UserData & { id: string }>
+    ) => {
+      state.currentUser = action.payload;
+      state.isLoading = false;
+      state.error = null;
+    },
+    signInFailed: (state, action: PayloadAction<Error>) => {
+      state.error = action.payload;
+      state.isLoading = false;
+    },
+  },
 });
 
-export const {} = userSlice.actions;
+export const { googleSignInStart, signInSuccess, signInFailed } =
+  userSlice.actions;
 
 export default userSlice.reducer;

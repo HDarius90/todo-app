@@ -1,9 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 import todoReducer from './todo/todo.slice';
+import userReducer from './user/user.slice';
 import rootSaga from './root-saga';
+
+const rootReducer = combineReducers({
+  todos: todoReducer,
+  user: userReducer,
+});
 
 const persistConfig = {
   key: 'root',
@@ -12,7 +18,7 @@ const persistConfig = {
 };
 
 const sagaMiddleware = createSagaMiddleware();
-const persistedReducer = persistReducer(persistConfig, todoReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,

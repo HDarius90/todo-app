@@ -4,7 +4,7 @@ import FormInput from '../form-input/form-input.component';
 import { ButtonsContainer, SignInContainer } from './sign-in-form.styles';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { googleSignInStart } from '../../store/user/user.action';
+import { googleSignInStart } from '../../store/user/user.slice';
 
 const defaultFormFields = {
   email: '',

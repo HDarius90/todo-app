@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import {
   TodoItem,
   List,
@@ -13,7 +12,7 @@ import { removeTodo, toggleTodo } from '../../store/todo/todo.slice';
 
 const TaskList = () => {
   const dispatch = useDispatch();
-  const todos = useSelector((state: RootState) => state.todos);
+  const todos = useSelector((state: RootState) => state.todos.allTodos);
 
   return (
     <List>
