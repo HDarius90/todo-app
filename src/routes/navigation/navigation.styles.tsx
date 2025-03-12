@@ -26,7 +26,9 @@ export const NavLink = styled(Link)`
   cursor: pointer;
 `;
 
-export const WrapperContainer = styled.div<WrapperContainerProps>`
+export const WrapperContainer = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'isHomePage',
+})<WrapperContainerProps>`
   background-color: ${({ isHomePage }) => (isHomePage ? '#e3f2fd' : 'white')};
   min-height: 100vh;
 `;

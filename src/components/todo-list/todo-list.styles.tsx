@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { FaTrash } from 'react-icons/fa';
 
+type TodoItemProps = {
+  completed: boolean;
+};
 
 export const List = styled.ul`
   max-height: 18rem;
@@ -13,15 +16,17 @@ export const List = styled.ul`
   padding: 0 1rem 0 0;
 `;
 
-export const TodoItem = styled.li<{ completed: boolean }>`
+export const TodoItem = styled.li.withConfig({
+  shouldForwardProp: (prop) => prop !== 'completed',
+})<TodoItemProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 0.7rem;
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-decoration: ${({ completed }) => (completed ? "line-through" : "none")};
+  text-decoration: ${({ completed }) => (completed ? 'line-through' : 'none')};
   color: black;
 
   &:hover button {
@@ -38,13 +43,13 @@ export const TodoContent = styled.span`
   text-align: left;
   flex-grow: 2;
   word-wrap: break-word;
-  max-width: 80%
-`
+  max-width: 80%;
+`;
 
 export const TrashIcon = styled(FaTrash)`
-color: grey;
+  color: grey;
 
-&:hover {
-  color: #000000a2;
-}
-`
+  &:hover {
+    color: #000000a2;
+  }
+`;

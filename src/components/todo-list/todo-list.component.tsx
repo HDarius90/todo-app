@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { removeTodo, toggleTodo } from '../../store/todo/todo.slice';
 
-const TaskList = () => {
+const TodoList = () => {
   const dispatch = useDispatch();
   const todos = useSelector((state: RootState) => state.todos.allTodos);
 
@@ -36,4 +36,4 @@ const TaskList = () => {
   );
 };
 
-export default TaskList;
+export default TodoList;
