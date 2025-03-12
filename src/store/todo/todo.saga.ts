@@ -1,24 +1,27 @@
 import { addTodo, toggleTodo, removeTodo } from './todo.slice';
-import { all, put, takeLatest } from 'typed-redux-saga/macro';
+import { all, call, takeLatest } from 'typed-redux-saga/macro';
 
 function* addTodoSaga(action: ReturnType<typeof addTodo>) {
-  yield* put(addTodo(action.payload));
+  // Handle any side effects here if necessary
+  console.log('addTodoSaga triggered', action.payload);
 }
 
 function* toggleTodoSaga(action: ReturnType<typeof toggleTodo>) {
-  yield* put(toggleTodo(action.payload));
+  // Handle any side effects here if necessary
+  console.log('toggleTodoSaga triggered', action.payload);
 }
 
 function* removeTodoSaga(action: ReturnType<typeof removeTodo>) {
-  yield* put(removeTodo(action.payload));
+  // Handle any side effects here if necessary
+  console.log('removeTodoSaga triggered', action.payload);
 }
 
 function* watchTodoActions() {
-  yield takeLatest('todos/addTodoSaga', addTodoSaga);
-  yield takeLatest('todos/toggleTodoSaga', toggleTodoSaga);
-  yield takeLatest('todos/removeTodoSaga', removeTodoSaga);
+  yield* takeLatest(addTodo.type, addTodoSaga);
+  yield* takeLatest(toggleTodo.type, toggleTodoSaga);
+  yield* takeLatest(removeTodo.type, removeTodoSaga);
 }
 
 export function* todoSagas() {
-  yield* all([watchTodoActions()]);
+  yield* all([call(watchTodoActions)]);
 }
