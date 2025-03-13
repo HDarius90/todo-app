@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { UserData } from '../../utils/firebase/firebase.utils';
 import { NavigateFunction } from 'react-router-dom';
 import { UserState } from './user.types';
+import { RootState } from '../store';
 
 export const USER_INITIAL_STATE: UserState = {
   currentUser: null,
@@ -34,5 +35,7 @@ const userSlice = createSlice({
 
 export const { googleSignInStart, signInSuccess, signInFailed } =
   userSlice.actions;
+
+export const selectCurrentUser = (state: RootState) => state.user.currentUser;
 
 export default userSlice.reducer;

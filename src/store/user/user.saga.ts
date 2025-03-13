@@ -30,7 +30,6 @@ export function* getSnapshotFromUserAuth(
 }
 
 export function* signInWithGoogle({ payload: navigate }: GoogleSignInStart) {
-  console.log('signing in with google');
   try {
     const { user } = yield* call(signInWithGooglePopup);
     if (user) {
