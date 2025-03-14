@@ -3,6 +3,7 @@ import {
   AdditionalInformation,
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
+  getCurrentUser,
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
   signOutUser,
@@ -19,6 +20,7 @@ import {
   signUpFailed,
   signUpStart,
   signUpSuccess,
+  checkUserSession,
 } from './user.slice';
 
 type GoogleSignInStart = ReturnType<typeof googleSignInStart>;
@@ -111,6 +113,16 @@ export function* signUp({
   }
 }
 
+export function* isUserAuthenticated() {
+  try {
+    const userAuth = yield* call(getCurrentUser);
+    if (!userAuth) return;
+    yield* call(getSnapshotFromUserAuth, userAuth);
+  } catch (error) {
+    yield* put(signInFailed(error as Error));
+  }
+}
+
 export function* signInAfterSignUp({
   payload: { user, additionalDetails },
 }: SignUpSuccess) {
@@ -137,8 +149,13 @@ export function* onSignUpSuccess() {
   yield* takeLatest(signUpSuccess.type, signInAfterSignUp);
 }
 
+export function* onCheckUserSession() {
+  yield* takeLatest(checkUserSession.type, isUserAuthenticated);
+}
+
 export function* userSagas() {
   yield* all([
+    call(onCheckUserSession),
     call(onGoogleSignInStart),
     call(onEmailSignInStart),
     call(onSignOutStart),

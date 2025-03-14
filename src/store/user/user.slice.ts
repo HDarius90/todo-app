@@ -1,28 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {
-  AdditionalInformation,
-  UserData,
-} from '../../utils/firebase/firebase.utils';
 import { NavigateFunction } from 'react-router-dom';
-import { UserState } from './user.types';
+import {
+  EmailSignInPayload,
+  signInSuccessPayload,
+  SignUpStartPayload,
+  SignUpSuccessPayload,
+  UserState,
+} from './user.types';
 import { RootState } from '../store';
-import { User } from 'firebase/auth';
 
 export const USER_INITIAL_STATE: UserState = {
   currentUser: null,
   isLoading: false,
   error: null,
-};
-
-type EmailSignInPayload = {
-  email: string;
-  password: string;
-  navigate: NavigateFunction;
-};
-
-type SignUpSuccessPayload = {
-  user: User;
-  additionalDetails: AdditionalInformation;
 };
 
 const userSlice = createSlice({
@@ -37,10 +27,7 @@ const userSlice = createSlice({
       state.isLoading = true;
       state.error = null;
     },
-    signInSuccess: (
-      state,
-      action: PayloadAction<UserData & { id: string }>
-    ) => {
+    signInSuccess: (state, action: PayloadAction<signInSuccessPayload>) => {
       state.currentUser = action.payload;
       state.isLoading = false;
       state.error = null;
@@ -62,10 +49,7 @@ const userSlice = createSlice({
       state.error = action.payload;
       state.isLoading = false;
     },
-    signUpStart: (
-      state,
-      action: PayloadAction<EmailSignInPayload & { displayName: string }>
-    ) => {
+    signUpStart: (state, action: PayloadAction<SignUpStartPayload>) => {
       state.isLoading = true;
       state.error = null;
     },
@@ -77,6 +61,7 @@ const userSlice = createSlice({
       state.error = action.payload;
       state.isLoading = false;
     },
+    checkUserSession: (state) => {},
   },
 });
 
@@ -91,6 +76,7 @@ export const {
   signUpStart,
   signUpSuccess,
   signUpFailed,
+  checkUserSession,
 } = userSlice.actions;
 
 export const selectCurrentUser = (state: RootState) => state.user.currentUser;

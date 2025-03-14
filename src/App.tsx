@@ -1,6 +1,8 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import LoadingSpinner from './components/loading-spinner/loading-spinner.component';
+import { useDispatch } from 'react-redux';
+import { checkUserSession } from './store/user/user.slice';
 
 const Navigation = lazy(
   () => import('./routes/navigation/navigation.component')
@@ -11,6 +13,12 @@ const Authentication = lazy(
 );
 
 const App: React.FC = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkUserSession());
+  }, []);
+
   return (
     <Suspense fallback={<LoadingSpinner />}>
       <Routes>
