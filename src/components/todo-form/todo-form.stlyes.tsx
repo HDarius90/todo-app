@@ -9,6 +9,7 @@ export const TodoInput = styled.textarea`
   overflow: hidden;
   scrollbar-width: none; /* for Firefox */
   font-size: large;
+  font-family: 'Poppins', serif;
 
   &:focus {
     border: 1px solid darkblue;

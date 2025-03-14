@@ -12,7 +12,7 @@ import { RootState } from '../../store/store';
 
 const Notebook = () => {
   const dispatch = useDispatch();
-  const todos = useSelector((state: RootState) => state.todos);
+  const todos = useSelector((state: RootState) => state.todos.allTodos);
   const allActiveTask = todos.reduce(
     (taskCount, currentTask) =>
       currentTask.completed ? taskCount : taskCount + 1,
