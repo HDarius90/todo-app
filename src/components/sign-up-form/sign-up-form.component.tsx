@@ -3,6 +3,9 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import Button from '../button/button.component';
 import FormInput from '../form-input/form-input.component';
 import { SignUpContainer } from './sing-up-form.styles';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { signUpStart } from '../../store/user/user.slice';
 
 const defaultFormFields = {
   displayName: '',
@@ -12,6 +15,8 @@ const defaultFormFields = {
 };
 
 const SignUpForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
@@ -28,6 +33,7 @@ const SignUpForm = () => {
     }
 
     try {
+      dispatch(signUpStart({ email, password, displayName, navigate }));
       resetFormFields();
     } catch (error) {
       if ((error as AuthError).code === AuthErrorCodes.EMAIL_EXISTS) {

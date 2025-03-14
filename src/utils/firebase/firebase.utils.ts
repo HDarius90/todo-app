@@ -7,6 +7,7 @@ import {
   User,
   signInWithEmailAndPassword,
   signOut,
+  createUserWithEmailAndPassword,
 } from 'firebase/auth';
 import {
   doc,
@@ -78,6 +79,15 @@ export const createUserDocumentFromAuth = async (
   }
 
   return userSnapshot as QueryDocumentSnapshot<UserData>;
+};
+
+export const createAuthUserWithEmailAndPassword = async (
+  email: string,
+  password: string
+) => {
+  if (!email || !password) return;
+
+  return await createUserWithEmailAndPassword(auth, email, password);
 };
 
 export const signInAuthUserWithEmailAndPassword = async (
