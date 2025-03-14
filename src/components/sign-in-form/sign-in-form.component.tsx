@@ -4,7 +4,10 @@ import FormInput from '../form-input/form-input.component';
 import { ButtonsContainer, SignInContainer } from './sign-in-form.styles';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { googleSignInStart } from '../../store/user/user.slice';
+import {
+  googleSignInStart,
+  emailSignInStart,
+} from '../../store/user/user.slice';
 
 const defaultFormFields = {
   email: '',
@@ -29,6 +32,7 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
+      dispatch(emailSignInStart({ email, password, navigate }));
       resetFormFields();
     } catch (error) {
       console.log('user sign in failed', error);

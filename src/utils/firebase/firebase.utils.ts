@@ -5,6 +5,8 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   User,
+  signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 import {
   doc,
@@ -17,10 +19,10 @@ import {
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: "todo-app-db-698b2",
-  storageBucket: "todo-app-db-698b2.firebasestorage.app",
-  messagingSenderId: "239152901816",
-  appId: "1:239152901816:web:eb6ae94bda050e9e14ce4d"
+  projectId: 'todo-app-db-698b2',
+  storageBucket: 'todo-app-db-698b2.firebasestorage.app',
+  messagingSenderId: '239152901816',
+  appId: '1:239152901816:web:eb6ae94bda050e9e14ce4d',
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -77,3 +79,14 @@ export const createUserDocumentFromAuth = async (
 
   return userSnapshot as QueryDocumentSnapshot<UserData>;
 };
+
+export const signInAuthUserWithEmailAndPassword = async (
+  email: string,
+  password: string
+) => {
+  if (!email || !password) return;
+
+  return await signInWithEmailAndPassword(auth, email, password);
+};
+
+export const signOutUser = async () => await signOut(auth);

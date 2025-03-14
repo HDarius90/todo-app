@@ -1,6 +1,6 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useLocation } from 'react-router-dom';
-import { selectCurrentUser } from '../../store/user/user.slice';
+import { selectCurrentUser, signOutStart } from '../../store/user/user.slice';
 import {
   NavigationContainer,
   NavLink,
@@ -9,8 +9,13 @@ import {
 } from './navigation.styles';
 
 const Navigation = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const currentUser = useSelector(selectCurrentUser);
+
+  const signOutUser = () => {
+    dispatch(signOutStart());
+  };
 
   return (
     <WrapperContainer isHomePage={location.pathname === '/'}>
@@ -18,13 +23,7 @@ const Navigation = () => {
         <NavLinks>
           <NavLink to="/">HOME</NavLink>
           {currentUser ? (
-            <NavLink
-              as="span"
-              to="/"
-              onClick={() => {
-                console.log('sign out');
-              }}
-            >
+            <NavLink as="span" to="/" onClick={signOutUser}>
               SIGN OUT
             </NavLink>
           ) : (
