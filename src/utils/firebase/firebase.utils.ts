@@ -11,12 +11,15 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import {
+  addDoc,
+  collection,
   doc,
   getDoc,
   getFirestore,
   QueryDocumentSnapshot,
   setDoc,
 } from 'firebase/firestore';
+import { Todo } from '../../store/todo/todo.types';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -115,3 +118,10 @@ export const getCurrentUser = (): Promise<User | null> => {
   });
 };
 
+export const addTodoToFirestore = async (todo: Todo) => {
+  try {
+    await addDoc(collection(db, 'todos'), todo);
+  } catch (error) {
+    console.error('Error adding todo to Firestore:', error);
+  }
+};

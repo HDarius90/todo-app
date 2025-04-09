@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { TodoInput } from './todo-form.stlyes';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../../store/todo/todo.slice';
+import { addTodoStart } from '../../store/todo/todo.slice';
 
 const TaskForm = () => {
   const dispatch = useDispatch();
@@ -9,7 +9,7 @@ const TaskForm = () => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === 'Enter' && text.trim()) {
       event.preventDefault();
-      dispatch(addTodo(text));
+      dispatch(addTodoStart(text));
       setText('');
     }
   };
