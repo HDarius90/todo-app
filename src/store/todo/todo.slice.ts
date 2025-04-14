@@ -12,7 +12,10 @@ const todoSlice = createSlice({
     addTodo: (state, action: PayloadAction<Todo>) => {
       state.allTodos.push(action.payload);
     },
-    addTodoStart: (state, action: PayloadAction<string>) => {
+    addTodoStart: (state, action: PayloadAction<string>) => {},
+    fetchTodo: (state) => {},
+    setTodos: (state, action: PayloadAction<Todo[]>) => {
+      state.allTodos = action.payload;
     },
     toggleTodo: (state, action: PayloadAction<string>) => {
       const todo = state.allTodos.find((todo) => todo.id === action.payload);
@@ -29,6 +32,13 @@ const todoSlice = createSlice({
   },
 });
 
-export const { addTodo, addTodoStart, toggleTodo, removeTodo, removeAllTodo } =
-  todoSlice.actions;
+export const {
+  addTodo,
+  addTodoStart,
+  fetchTodo,
+  setTodos,
+  toggleTodo,
+  removeTodo,
+  removeAllTodo,
+} = todoSlice.actions;
 export default todoSlice.reducer;

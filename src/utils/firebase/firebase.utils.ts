@@ -1,23 +1,26 @@
 import { initializeApp } from 'firebase/app';
 import {
-  getAuth,
-  signInWithRedirect,
-  signInWithPopup,
-  GoogleAuthProvider,
-  User,
-  signInWithEmailAndPassword,
-  signOut,
   createUserWithEmailAndPassword,
+  getAuth,
+  GoogleAuthProvider,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signInWithRedirect,
+  signOut,
+  User,
 } from 'firebase/auth';
 import {
   addDoc,
   collection,
   doc,
   getDoc,
+  getDocs,
   getFirestore,
+  query,
   QueryDocumentSnapshot,
   setDoc,
+  where,
 } from 'firebase/firestore';
 import { Todo } from '../../store/todo/todo.types';
 
@@ -123,5 +126,22 @@ export const addTodoToFirestore = async (todo: Todo) => {
     await addDoc(collection(db, 'todos'), todo);
   } catch (error) {
     console.error('Error adding todo to Firestore:', error);
+  }
+};
+
+export const fetchTodosFromFirestore = async (userId: string) => {
+  try {
+    const todosRef = collection(db, 'todos');
+    const q = query(todosRef, where('ownerId', '==', userId));
+    const querySnapshot = await getDocs(q);
+
+    const todos = querySnapshot.docs.map((doc) => ({
+      ...(doc.data() as Todo),
+    }));
+
+    return todos;
+  } catch (error) {
+    console.error('Error fetching todos from Firestore:', error);
+    throw error;
   }
 };

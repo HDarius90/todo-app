@@ -1,10 +1,18 @@
-import {
-  addTodoToFirestore,
-  getCurrentUser,
-} from '../../utils/firebase/firebase.utils';
-import { addTodo, toggleTodo, removeTodo, addTodoStart } from './todo.slice';
 import { all, call, put, takeLatest } from 'typed-redux-saga/macro';
 import { v4 as uuid4 } from 'uuid';
+import {
+  addTodoToFirestore,
+  fetchTodosFromFirestore,
+  getCurrentUser,
+} from '../../utils/firebase/firebase.utils';
+import {
+  addTodo,
+  addTodoStart,
+  fetchTodo,
+  removeTodo,
+  setTodos,
+  toggleTodo,
+} from './todo.slice';
 
 function* addTodoSagaStart(action: ReturnType<typeof addTodoStart>) {
   try {
@@ -27,6 +35,19 @@ function* addTodoSagaStart(action: ReturnType<typeof addTodoStart>) {
   }
 }
 
+function* fetchTodosSaga() {
+  try {
+    const user = yield* call(getCurrentUser);
+    if (!user) return;
+
+    const todos = yield* call(fetchTodosFromFirestore, user.uid);
+
+    yield* put(setTodos(todos));
+  } catch (error) {
+    console.error('Error fetching todos:', error);
+  }
+}
+
 function* toggleTodoSaga(action: ReturnType<typeof toggleTodo>) {
   // Handle any side effects here if necessary
   console.log('toggleTodoSaga triggered', action.payload);
@@ -38,6 +59,7 @@ function* removeTodoSaga(action: ReturnType<typeof removeTodo>) {
 }
 
 function* watchTodoActions() {
+  yield* takeLatest(fetchTodo.type, fetchTodosSaga);
   yield* takeLatest(addTodoStart.type, addTodoSagaStart);
   yield* takeLatest(toggleTodo.type, toggleTodoSaga);
   yield* takeLatest(removeTodo.type, removeTodoSaga);

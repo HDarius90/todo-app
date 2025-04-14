@@ -22,6 +22,7 @@ import {
   signUpSuccess,
   checkUserSession,
 } from './user.slice';
+import { fetchTodo } from '../todo/todo.slice';
 
 type GoogleSignInStart = ReturnType<typeof googleSignInStart>;
 type EmailSignInStart = ReturnType<typeof emailSignInStart>;
@@ -42,6 +43,8 @@ export function* getSnapshotFromUserAuth(
       yield* put(
         signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() })
       );
+
+      yield* put(fetchTodo());
     }
   } catch (error) {
     yield* put(signInFailed(error as Error));
@@ -118,6 +121,7 @@ export function* isUserAuthenticated() {
     const userAuth = yield* call(getCurrentUser);
     if (!userAuth) return;
     yield* call(getSnapshotFromUserAuth, userAuth);
+    yield* put(fetchTodo());
   } catch (error) {
     yield* put(signInFailed(error as Error));
   }
