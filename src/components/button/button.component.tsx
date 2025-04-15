@@ -31,8 +31,8 @@ export type ButtonProps = {
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button: FC<ButtonProps> = ({ children, buttonType, ...otherProps }) => {
-  const CustomeButton = getButton(buttonType);
-  return <CustomeButton {...otherProps}>{children}</CustomeButton>;
+  const CustomButton = getButton(buttonType);
+  return <CustomButton {...otherProps}>{children}</CustomButton>;
 };
 
 export default Button;
