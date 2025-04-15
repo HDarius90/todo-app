@@ -11,6 +11,7 @@ import {
   addTodo,
   addTodoStart,
   fetchTodo,
+  removeAllTodo,
   removeTodo,
   setTodos,
   toggleTodo,
@@ -70,11 +71,28 @@ function* removeTodoSaga(action: ReturnType<typeof removeTodo>) {
   }
 }
 
+function* removeAllTodoSaga() {
+  try {
+    const user = yield* call(getCurrentUser);
+    if (!user) throw new Error('User is not authenticated');
+
+    const todos = yield* call(fetchTodosFromFirestore, user.uid);
+
+    for (const todo of todos) {
+      yield* call(removeTodoFromFirestore, todo.id);
+    }
+
+  } catch (error) {
+    console.error('Error removing all todos:', error);
+  }
+}
+
 function* watchTodoActions() {
   yield* takeLatest(fetchTodo.type, fetchTodosSaga);
   yield* takeLatest(addTodoStart.type, addTodoSagaStart);
   yield* takeLatest(toggleTodo.type, toggleTodoSaga);
   yield* takeLatest(removeTodo.type, removeTodoSaga);
+  yield* takeLatest(removeAllTodo.type, removeAllTodoSaga);
 }
 
 export function* todoSagas() {
