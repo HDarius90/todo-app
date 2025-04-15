@@ -13,6 +13,7 @@ import {
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -156,6 +157,16 @@ export const updateTodoInFirestore = async (
     await updateDoc(todoRef, data);
   } catch (error) {
     console.error('Error updating todo in Firestore:', error);
+    throw error;
+  }
+};
+
+export const removeTodoFromFirestore = async (id: string) => {
+  try {
+    const todoRef = doc(db, 'todos', id);
+    await deleteDoc(todoRef);
+  } catch (error) {
+    console.error('Error removing todo from Firestore:', error);
     throw error;
   }
 };

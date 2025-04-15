@@ -4,6 +4,7 @@ import {
   addTodoToFirestore,
   fetchTodosFromFirestore,
   getCurrentUser,
+  removeTodoFromFirestore,
   updateTodoInFirestore,
 } from '../../utils/firebase/firebase.utils';
 import {
@@ -62,8 +63,11 @@ function* toggleTodoSaga(action: ReturnType<typeof toggleTodo>) {
 }
 
 function* removeTodoSaga(action: ReturnType<typeof removeTodo>) {
-  // Handle any side effects here if necessary
-  console.log('removeTodoSaga triggered', action.payload);
+  try {
+    yield* call(removeTodoFromFirestore, action.payload);
+  } catch (error) {
+    console.log('Error removing todo:', error);
+  }
 }
 
 function* watchTodoActions() {
