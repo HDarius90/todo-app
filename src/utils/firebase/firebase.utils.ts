@@ -20,6 +20,7 @@ import {
   query,
   QueryDocumentSnapshot,
   setDoc,
+  updateDoc,
   where,
 } from 'firebase/firestore';
 import { Todo } from '../../store/todo/todo.types';
@@ -121,9 +122,9 @@ export const getCurrentUser = (): Promise<User | null> => {
   });
 };
 
-export const addTodoToFirestore = async (todo: Todo) => {
+export const addTodoToFirestore = async (newTodo: Todo) => {
   try {
-    await addDoc(collection(db, 'todos'), todo);
+    await setDoc(doc(db, 'todos', newTodo.id), newTodo);
   } catch (error) {
     console.error('Error adding todo to Firestore:', error);
   }
@@ -142,6 +143,19 @@ export const fetchTodosFromFirestore = async (userId: string) => {
     return todos;
   } catch (error) {
     console.error('Error fetching todos from Firestore:', error);
+    throw error;
+  }
+};
+
+export const updateTodoInFirestore = async (
+  id: string,
+  data: Partial<Todo>
+) => {
+  try {
+    const todoRef = doc(db, 'todos', id);
+    await updateDoc(todoRef, data);
+  } catch (error) {
+    console.error('Error updating todo in Firestore:', error);
     throw error;
   }
 };

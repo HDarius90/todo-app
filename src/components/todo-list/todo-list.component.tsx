@@ -24,11 +24,13 @@ const TodoList = () => {
     }
 
     event.stopPropagation();
-    dispatch(toggleTodo(id));
+    const todo = todos.find((todo) => todo.id === id);
+    dispatch(toggleTodo({ id, completed: !todo?.completed }));
   };
 
   const handleCheckboxChange = (id: string) => {
-    dispatch(toggleTodo(id));
+    const todo = todos.find((todo) => todo.id === id);
+    dispatch(toggleTodo({ id, completed: !todo?.completed }));
   };
 
   const handleRemove = (

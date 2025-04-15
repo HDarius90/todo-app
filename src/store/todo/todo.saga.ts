@@ -4,6 +4,7 @@ import {
   addTodoToFirestore,
   fetchTodosFromFirestore,
   getCurrentUser,
+  updateTodoInFirestore,
 } from '../../utils/firebase/firebase.utils';
 import {
   addTodo,
@@ -49,8 +50,15 @@ function* fetchTodosSaga() {
 }
 
 function* toggleTodoSaga(action: ReturnType<typeof toggleTodo>) {
-  // Handle any side effects here if necessary
-  console.log('toggleTodoSaga triggered', action.payload);
+  try {
+    const { id, completed } = action.payload;
+
+    yield* call(updateTodoInFirestore, id, { completed });
+
+    console.log(`Todo with ID ${id} toggled to ${completed}`);
+  } catch (error) {
+    console.error('Error toggling todo:', error);
+  }
 }
 
 function* removeTodoSaga(action: ReturnType<typeof removeTodo>) {
