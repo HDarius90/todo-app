@@ -9,6 +9,7 @@ export const NotebookContainer = styled.div`
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
   margin: auto;
   padding: 23px;
+  font-family: 'Poppins', serif;
 
   @media (max-width: 550px) {
     max-width: 90%;
