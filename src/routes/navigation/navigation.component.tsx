@@ -4,7 +4,6 @@ import { selectCurrentUser, signOutStart } from '../../store/user/user.slice';
 import {
   NavigationContainer,
   NavLink,
-  NavLinks,
   WrapperContainer,
 } from './navigation.styles';
 
@@ -20,7 +19,6 @@ const Navigation = () => {
   return (
     <WrapperContainer isHomePage={location.pathname === '/'}>
       <NavigationContainer>
-        <NavLinks>
           <NavLink to="/">HOME</NavLink>
           {currentUser ? (
             <NavLink as="span" to="/" onClick={signOutUser}>
@@ -29,7 +27,6 @@ const Navigation = () => {
           ) : (
             <NavLink to="/auth">SIGN IN</NavLink>
           )}
-        </NavLinks>
       </NavigationContainer>
       <Outlet />
     </WrapperContainer>

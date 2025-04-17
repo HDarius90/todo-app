@@ -7,23 +7,31 @@ type WrapperContainerProps = {
 
 export const NavigationContainer = styled.div`
   height: 70px;
-  width: 100%;
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 25px;
-`;
-
-export const NavLinks = styled.div`
-  width: 50%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
 `;
 
 export const NavLink = styled(Link)`
-  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 7rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #444;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: #2563eb;
+    background-color: #f3f4f6;
+  }
 `;
 
 export const WrapperContainer = styled.div.withConfig({
