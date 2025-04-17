@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { ReactComponent as DarkModeSvg } from '../../assets/dark-mode-solid-svgrepo-com.svg';
 
 type WrapperContainerProps = {
   isHomePage: boolean;
@@ -39,4 +40,10 @@ export const WrapperContainer = styled.div.withConfig({
 })<WrapperContainerProps>`
   background-color: ${({ isHomePage }) => (isHomePage ? '#e3f2fd' : 'white')};
   min-height: 100vh;
+`;
+
+export const DarkModeSymbol = styled(DarkModeSvg)`
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
 `;

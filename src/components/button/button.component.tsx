@@ -6,6 +6,7 @@ import {
   DeleteButton,
   GoogleSignInButton,
   InvertedButton,
+  DarkModeButton,
 } from './button.styles';
 
 export enum BUTTON_TYPE_CLASSES {
@@ -14,6 +15,7 @@ export enum BUTTON_TYPE_CLASSES {
   delete = 'delete',
   google = 'google-sign-in',
   inverted = 'inverted',
+  darkmode = 'darkmode',
 }
 
 const getButton = (buttonType = BUTTON_TYPE_CLASSES.base) =>
@@ -23,6 +25,7 @@ const getButton = (buttonType = BUTTON_TYPE_CLASSES.base) =>
     [BUTTON_TYPE_CLASSES.delete]: DeleteButton,
     [BUTTON_TYPE_CLASSES.google]: GoogleSignInButton,
     [BUTTON_TYPE_CLASSES.inverted]: InvertedButton,
+    [BUTTON_TYPE_CLASSES.darkmode]: DarkModeButton,
   }[buttonType]);
 
 export type ButtonProps = {

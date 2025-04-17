@@ -73,3 +73,19 @@ export const InvertedButton = styled(BaseButton)`
     border: none;
   }
 `;
+
+export const DarkModeButton = styled(BaseButton)`
+  background-color: transparent;
+  min-width: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 5vw;
+  margin-top: 8px;
+
+  &:hover {
+    background-color: transparent;
+
+    border: none;
+  }
+`;
