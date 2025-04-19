@@ -4,6 +4,7 @@ import { ReactComponent as DarkModeSvg } from '../../assets/dark-mode-solid-svgr
 
 type WrapperContainerProps = {
   isHomePage: boolean;
+  isDarkMode: boolean;
 };
 
 export const NavigationContainer = styled.div`
@@ -38,7 +39,8 @@ export const NavLink = styled(Link)`
 export const WrapperContainer = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== 'isHomePage',
 })<WrapperContainerProps>`
-  background-color: ${({ isHomePage }) => (isHomePage ? '#e3f2fd' : 'white')};
+  background-color: ${({ isDarkMode, isHomePage }) =>
+    isDarkMode ? '#000' : isHomePage ? '#e3f2fd' : '#fff'};
   min-height: 100vh;
 `;
 
